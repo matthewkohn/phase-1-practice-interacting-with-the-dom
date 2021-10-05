@@ -5,9 +5,9 @@ const plus = document.querySelector('#plus');
 const heart = document.querySelector('#heart');
 const pause = document.querySelector('#pause');
 const likes = document.querySelector('.likes');
-const comments = document.querySelector('#list.comments');
-const commentInput = document.querySelector('#comment-input');
-const submit = document.querySelector('#submit');
+const commentForm = document.querySelector('#comment-form');
+const comments = document.querySelector('#list');
+
 let counter = document.querySelector('#counter').innerText;
 let seconds = parseInt(counter);
 let heartCount = {};
@@ -64,4 +64,20 @@ function handlePause() {
     pause.innerText = 'pause';
     buttons.forEach(a => a.disabled = false);
   }
+}
+
+// As a user, I should be able to click the "restart" button to restart the counter and re-enable the buttons.
+// As a user, I can leave comments on my gameplay, such as: "Wow, what a fun game this is."
+
+commentForm.addEventListener('submit', handleSubmit);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  // grab the comment input
+  const commentInput = document.querySelector('#comment-input');
+  // add to the DOM
+  const li = document.createElement(li);
+  li.innerText = commentInput;
+  comments.append(li);
+  e.target.reset();
 }
